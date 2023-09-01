@@ -1,0 +1,9 @@
+sudo: required
+services:
+  - docker
+
+before_install:
+  - docker build -t ndomanyo/docker-tutorial-frontend -f Dockerfile.dev .
+
+script:
+  - docker run -e CI=true ndomanyo/docker-tutorial-frontend npm run test
