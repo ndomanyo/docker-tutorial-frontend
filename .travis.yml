@@ -7,3 +7,16 @@ before_install:
 
 script:
   - docker run -e CI=true ndomanyo/docker-tutorial-frontend npm run test
+
+deploy:
+  provider: elasticbeanstalk
+  region: "us-east-1"
+  app: "docker-tutorial-frontend-application"
+  env: "docker-tutorial-frontend-applica-env"
+  bucket_name: "elasticbeanstalk-us-east-1-539450605899"
+  bucket_path: "docker-tutorial-frontend-application"     # may not exist initially
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
+  
